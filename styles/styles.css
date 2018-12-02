@@ -1,0 +1,10 @@
+
+.category img, .playlist img{
+    height: 150px;
+    width: 150px;
+    cursor: pointer;
+}
+
+#PlayerSignUp{
+    display: none;
+}

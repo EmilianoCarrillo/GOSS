@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "Song guessing game",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.16.4"
+  },
   "devDependencies": {},
   "scripts": {
-    "start" : "node scripts/index.js"
+    "start": "node scripts/index.js"
   },
-  "engines":{
+  "engines": {
     "node": "9.11.1",
     "npm": "6.4.1"
   },

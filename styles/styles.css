@@ -8,4 +8,14 @@
 #PlayerSignUp{
     display: none;
 }
+.category h2{
+    text-align: center;
+    width: 150px;
+    height: 30px;;
+    background: red;
+    color: white;
+    position: relative;
+    top: -20px;
+    left: 50px;
+}
 

@@ -27,9 +27,6 @@ $.ajax({
     success: function(data){
         console.log(data);
         trackIds = data.split(",");
-        trackIds.forEach(id => {
-            console.log(id);
-        });
     },
     error: function(request, status, error){
         console.log("Status: " + status + " Error:" + error);

@@ -1,9 +1,27 @@
 function startGame(tracks){
-    var gameTracks = getRandomTracks(tracks);
+    var gameTracksIds = getRandomTracks(tracks);
+
+    console.log(gameTracksIds);
 
     $("#PlaylistsContainer").hide();
 
-    //Hola
+    var parametros = {
+        tracks: gameTracksIds
+    };
+    $.ajax({
+        data: parametros,
+        url: "php/crear_party.php",
+        type: "post",
+        beforeSend: function(){
+            console.log("Cargando...");
+        },
+        success: function(data){
+            console.log(data);
+        },
+        error: function(request, status, error){
+            console.log("Status: " + status + " Error:" + error);
+        }
+    });
 
 }
 
@@ -20,7 +38,7 @@ function getRandomTracks(tracks){
         while(flags[randomNum] == 1 || tracks[randomNum].track.preview_url == null){
             randomNum = Math.floor(Math.random() * 100.0) % tracks.length;
         }
-        gameTracks.push(tracks[randomNum].track);
+        gameTracks.push(tracks[randomNum].track.id);
         flags[randomNum] = 1;
     }
 

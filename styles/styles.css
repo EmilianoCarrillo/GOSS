@@ -2,7 +2,7 @@
     text-align: center;
 }
 body{
-    background-image: linear-gradient(to top, #9890e3 0%, #b1f4cf 100%);
+    background: white;
 }
 
 .category img, .playlist img{
@@ -12,37 +12,44 @@ body{
     box-shadow: 0px 0px 3px #2d2d2d;
 }
 
-#RegionSelector:hover{
-    cursor:pointer;
 
-}
-
-#RegionSelector{
+#CountrySelection{
     position: absolute;
-    top: 35px;
-    left:250px;
-    height: 250px;
-    background: none;
-    border: 0px;
-    font-weight: bold;
+    left: 50%;
+    top: 300px;
+    transform: translateX(-50%);    
 }
 
 #SelectYourRegion{
-    position: absolute;
-    top: 5px;
-    left: 0px;
+    position: relative;    
+    margin: 20px;
+    font-size: 30px;
+}
+
+#RegionSelector{
+    position: relative;
+    background: none;
+    font-weight: bold;
+    height: 40px;
+    width: 90px;
+    border: 2px solid rgb(47, 47, 90);
+    border-radius: 5px;
+}
+#ChoseRegion:hover{
+    background:rgb(14, 14, 43);
     cursor: pointer;
+    color: white;
 }
 
 #ChoseRegion{
-    position: absolute;
-    top: 35px;
-    left: 80px;
-    height: 25px;
-    text-align: center;
-    padding: 0px;
-    width: 80px;
-    
+    position: relative;
+    background: none;
+    font-weight: bold;
+    height: 40px;
+    width: 90px;
+    margin-left: 10px;
+    border: 2px solid rgb(47, 47, 90);
+    border-radius: 5px;
 }
 
 

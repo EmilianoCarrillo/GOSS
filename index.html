@@ -7,18 +7,23 @@
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato:900i" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <title>GOSS</title>
 </head>
 <body>
+        
+               <header>
+                    <h1 class="title is-one" id="MainTitle">Select your favorite music genre</h1>
+                    <h1 class="title is-one" id="MainTitle2">Select your playlist</h1>
+                    <button class="button" id="BackButton"><i class="fas fa-angle-left"></i> &nbsp; &nbsp;Go Back</button>
+               </header>
 
     <div class="container">
-            <h1 class="title is-one" id="MainTitle">Guessing One Second Song</h1>
-
-            <audio id="AudioPlayer" preload="auto" ></audio>
-
-            <button class="button" id="BackButton"><i class="fas fa-angle-left"></i> &nbsp; &nbsp;Go Back</button>
-
+        <h1 id="Goss">GOSS</h1>   
+           
+  
+        
             <section id="CountrySelection">
                 <h3 id="SelectYourRegion">Select your region </h3>
 
@@ -49,5 +54,6 @@
 
     <script src="scripts/spotify-web-api-js/src/spotify-web-api.js"></script>
     <script src="scripts/app.js"></script>
+    <script src="scripts/app2.js"></script>
 </body>
 </html>

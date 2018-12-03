@@ -17,32 +17,22 @@ body{
 
 }
 
+#CountrySelection{
+    position: relative;
+    background: red;
+    top: 250px;
+}
+
 #RegionSelector{
-    position: absolute;
-    top: 35px;
-    left:250px;
-    height: 250px;
-    background: none;
-    border: 0px;
-    font-weight: bold;
+   
 }
 
 #SelectYourRegion{
-    position: absolute;
-    top: 5px;
-    left: 0px;
-    cursor: pointer;
+
 }
 
 #ChoseRegion{
-    position: absolute;
-    top: 35px;
-    left: 80px;
-    height: 25px;
-    text-align: center;
-    padding: 0px;
-    width: 80px;
-    
+
 }
 
 

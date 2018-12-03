@@ -1,15 +1,50 @@
 *{
-    background: #FF4E50;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #F9D423, #FF4E50);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #F9D423, #FF4E50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+    text-align: center;
+}
+body{
+    background-image: linear-gradient(to top, #9890e3 0%, #b1f4cf 100%);
 }
 
 .category img, .playlist img{
     height: 150px;
     width: 150px;
     cursor: pointer;
+    box-shadow: 0px 0px 3px #2d2d2d;
 }
+
+#RegionSelector:hover{
+    cursor:pointer;
+
+}
+
+#RegionSelector{
+    position: absolute;
+    top: 35px;
+    left:250px;
+    height: 250px;
+    background: none;
+    border: 0px;
+    font-weight: bold;
+}
+
+#SelectYourRegion{
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    cursor: pointer;
+}
+
+#ChoseRegion{
+    position: absolute;
+    top: 35px;
+    left: 80px;
+    height: 25px;
+    text-align: center;
+    padding: 0px;
+    width: 80px;
+    
+}
+
 
 #PlayerSignUp{
     display: none;
@@ -18,12 +53,17 @@
     text-align: center;
     width: 150px;
     height: 30px;;
-    background: #fd0054;
+    background: #178480;
     color: white;
     position: relative;
-    cursor: pointer;
-    box-shadow: 0px 0px 3px black;
-    top: -10px;
+    cursor: pointer;        
+    box-shadow: 1px 1px 3px black;   
+    left: 70px; 
+    top: -30px;
+    font-weight: bold;
+}
+.category h2:hover{
+    
 }
 
 

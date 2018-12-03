@@ -4,15 +4,38 @@
 body{
     background: white;
 }
-
+#MainTitle{
+    position: relative;
+    top: 40px;  
+}
 .category img, .playlist img{
-    height: 150px;
-    width: 150px;
+    height: 200px;
+    width: 200px;
     cursor: pointer;
     box-shadow: 0px 0px 3px #2d2d2d;
+    background: #2d2d2d;
+   
+}
+.playlist img:hover{
+    padding: 10px;
+    transition: .3s;
 }
 
-
+#BackButton{
+    position: fixed;
+    width: 150px;
+    left: 8%;            
+    z-index: 999;
+    font-weight: bold;  
+    border: 2px solid #db2d43;
+    color: #db2d43;
+    background: white;
+}
+#BackButton:hover{
+    border: 2px solid #db2d43;  
+    color:white;
+    background: #db2d43;
+}
 #CountrySelection{
     position: absolute;
     left: 50%;
@@ -24,33 +47,45 @@ body{
     position: relative;    
     margin: 20px;
     font-size: 30px;
+  
+}
+#RegionSelector:hover{
+    border: 2px solid #db2d43;  
+    color:white;
+    background: #db2d43;
 }
 
 #RegionSelector{
     position: relative;
-    background: none;
     font-weight: bold;
     height: 40px;
     width: 90px;
-    border: 2px solid rgb(47, 47, 90);
     border-radius: 5px;
-}
-#ChoseRegion:hover{
-    background:rgb(14, 14, 43);
-    cursor: pointer;
-    color: white;
+    box-shadow: 0px 0px 3px black;
+    border: 2px solid #db2d43;
+    color: #db2d43;
+    background: white;
+    
 }
 
+#ChoseRegion:hover{
+    border: 2px solid #db2d43;  
+    color:white;
+    background: #db2d43;
+}
 #ChoseRegion{
     position: relative;
-    background: none;
     font-weight: bold;
     height: 40px;
     width: 90px;
     margin-left: 10px;
-    border: 2px solid rgb(47, 47, 90);
     border-radius: 5px;
+    box-shadow: 0px 0px 3px black;
+    border: 2px solid #db2d43;
+    color: #db2d43;
+    background: white;
 }
+
 
 
 #PlayerSignUp{
@@ -60,19 +95,25 @@ body{
     text-align: center;
     width: 150px;
     height: 30px;;
-    background: #178480;
     color: white;
     position: relative;
     cursor: pointer;        
-    box-shadow: 1px 1px 3px black;   
-    left: 70px; 
-    top: -30px;
     font-weight: bold;
-}
-.category h2:hover{
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
     
 }
+#CategoriesContainer{
+    position: relative;
+    top: 70px;
 
+}
+
+#PlaylistsContainer{
+    position: relative;
+    top: 70px;
+}
 
 
 

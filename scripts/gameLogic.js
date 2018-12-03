@@ -3,6 +3,8 @@ function startGame(tracks){
 
     $("#PlaylistsContainer").hide();
 
+    //Hola
+
 }
 
 

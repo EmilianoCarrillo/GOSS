@@ -18,35 +18,35 @@
             <audio id="AudioPlayer" preload="auto" controls></audio>
 
             <button class="button" id="BackButton">Go Back</button>
-        
+
             <section id="CountrySelection">
-                <h3>Select your region: </h3>
-        
+                <h3 id="SelectYourRegion">Select your region: </h3>
+
                 <select id="RegionSelector">
                     <option value="GL">Global</option>
                     <option value="MX">Mexico</option>
                 </select>
-        
-                <button class="button">Select</button>
-        
+
+                <button class="button" id="ChoseRegion">Select</button>
+
             </section>
-        
-            <section id="CategoriesContainer" class="columns is-multiline is-mobile">    
+
+            <section id="CategoriesContainer" class="columns is-multiline is-mobile">
                 <!-- <div class="category">
                     <img src="">
                     <h2 id="Name"></h2>
                  </div>  -->
             </section>
-        
+
             <section id="PlaylistsContainer" class="columns is-multiline is-mobile">
             </section>
-        
+
             <section id="PlayerSignUp">
                 <input type="text">
             </section>
 
     </div>
-    
+
     <script src="scripts/spotify-web-api-js/src/spotify-web-api.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/gameLogic.js"></script>

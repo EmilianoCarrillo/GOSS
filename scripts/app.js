@@ -1,6 +1,9 @@
 var spotifyApi = new SpotifyWebApi();
 var audioPlayer = document.getElementById("AudioPlayer");
 $("#BackButton").hide();
+$("#Game").hide();
+document.getElementById("AdivinarBtn").disabled = true;
+
 
 // POST to my node server to retrieve my Auth Token
 function getTokenFromNode() {
@@ -49,7 +52,7 @@ function getCategories(country) {
             data.categories.items.forEach(category => {                
                 addCategoryToHTML(category);
             });
-        });
+    });
 
 }
 
@@ -122,30 +125,59 @@ function addPlaylistToHTML(playlist){
     });
 }
 
+var actual = 0;
+var gameTracksIds;
+var interval;
+var timeout;
+var numOfSongs = 3;
+
 function postTracksAndGetURL(tracks, playlistId){
-    var gameTracksIds = getRandomTracks(tracks);
 
     $("#PlaylistsContainer").hide();
+    $("#Game").show();
+    $("#BackButton").hide();
+    
+    gameTracksIds = getRandomTracks(tracks);
 
-    var parametros = {
-        tracks: gameTracksIds,
-        playlist: playlistId
-    };
-    $.ajax({
-        data: parametros,
-        url: "php/crear_party.php",
-        type: "post",
-        beforeSend: function(){
-            console.log("Cargando...");
-        },
-        success: function(data){
-            window.location.href = ("./game.html?id=") + data;
-        },
-        error: function(request, status, error){
-            console.log("Status: " + status + " Error:" + error);
-        }
+    playRound(gameTracksIds[actual++], 3);
+
+}
+
+function playRound(trackId, seconds){
+    spotifyApi.getTrack(trackId)
+    .then(function(data){
+        playforNSeconds(data.preview_url, seconds);
+
+        var s = 10;
+        timeout = setTimeout(function(){
+            document.getElementById("AdivinarBtn").disabled = false;
+            interval = setInterval(function () {
+                if(s == 0) {
+                    clearInterval(interval);
+                    document.getElementById("TituloCancion").innerHTML = data.name;
+                }
+                $("#Tiempo").text(s--);
+            }, 1000);
+        }, seconds * 1000);
+        
     });
+}
 
+function next(){
+    console.log(actual);
+    audioPlayer.pause();
+    audioPlayer.currentTime = 0;
+    document.getElementById("TituloCancion").innerHTML = "";
+    $("#Tiempo").text("");
+    clearInterval(interval);
+    clearTimeout(timeout);
+
+
+    if(actual == numOfSongs){
+        alert("FINAL SCORE");
+    } else{
+        playRound(gameTracksIds[actual++], 3);
+    }
 }
 
 
@@ -156,7 +188,7 @@ function getRandomTracks(tracks){
     flags.fill(0);
     var randomNum;
 
-    for(var i = 1; i<= 10; i++){
+    for(var i = 1; i<= numOfSongs; i++){
         randomNum = Math.floor(Math.random() * 100.0) % tracks.length;
         while(flags[randomNum] == 1 || tracks[randomNum].track.preview_url == null){
             randomNum = Math.floor(Math.random() * 100.0) % tracks.length;
@@ -170,11 +202,13 @@ function getRandomTracks(tracks){
 
 
 function playforNSeconds(source, seconds) {
+    $("#SiguienteBtn").hide();
     audioPlayer.src = source;
     audioPlayer.play();
     setTimeout(function () {
         audioPlayer.pause();
         audioPlayer.currentTime = 0;
+        $("#SiguienteBtn").show();
     }, seconds * 1000);
 }
 

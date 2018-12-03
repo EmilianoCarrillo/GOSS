@@ -17,6 +17,7 @@ function setToken(tokenFromNode){
     spotifyApi.setAccessToken(tokenFromNode);
 }
 
+// Choose region
 document.querySelector("#CountrySelection button").addEventListener("click", function(){
     var region = document.getElementById("RegionSelector").value;
     getCategories(region);
@@ -24,6 +25,9 @@ document.querySelector("#CountrySelection button").addEventListener("click", fun
 
 function getCategories(country) {  
     $("#CategoriesContainer").show();
+    $("#CountrySelection").hide();
+    document.querySelector("#BackButton").removeEventListener("click", goToSelectCountry);
+    document.querySelector("#BackButton").addEventListener("click", goToSelectRegion);
 
     let options;
     if(country == "MX"){
@@ -77,6 +81,8 @@ function addCategoryToHTML(category){
 function showPlaylists(id){
     $("#CategoriesContainer").hide();
     $("#PlaylistsContainer").show();
+    document.querySelector("#BackButton").removeEventListener("click", goToSelectRegion);
+    document.querySelector("#BackButton").addEventListener("click", goToSelectCountry);
 
     var prev = spotifyApi.getCategoryPlaylists(id, { limit: 50 });
     prev.then(function(data){
@@ -121,6 +127,21 @@ function playforNSeconds(source, seconds) {
         audioPlayer.pause();
         audioPlayer.currentTime = 0;
     }, seconds * 1000);
+}
+
+function goToSelectCountry(){
+    console.log("Hola");
+    $("#CategoriesContainer").show();
+    $("#PlaylistsContainer").hide();
+    $("#PlaylistsContainer").html('');
+    document.querySelector("#BackButton").addEventListener("click", goToSelectRegion);
+}
+
+function goToSelectRegion() {
+    console.log("Hi");
+    $("#CountrySelection").show();
+    $("#CategoriesContainer").hide();
+    $("#CategoriesContainer").html('');
 }
 
 

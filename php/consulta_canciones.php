@@ -7,13 +7,9 @@
 	if(!$query)
 		echo "Error: " . $sql . "<br>" . $connect->error;
 	$fila = $query->fetch_assoc();
-	$pos=0;
 	foreach($fila as $valor){
-		$result=$result.$valor;
-		if($pos<=9)
-			$result=$result.",";
-		$pos++;
+		$result=$result.$valor.",";
 	}
-	echo $result;
+	echo $fila;
 	$connect->close();
 ?>

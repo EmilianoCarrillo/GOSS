@@ -1,5 +1,6 @@
 var spotifyApi = new SpotifyWebApi();
 var audioPlayer = document.getElementById("AudioPlayer");
+$("#BackButton").hide();
 
 // POST to my node server to retrieve my Auth Token
 function getTokenFromNode() {
@@ -19,6 +20,7 @@ function setToken(tokenFromNode){
 
 // Choose region
 document.querySelector("#CountrySelection button").addEventListener("click", function(){
+    $("#BackButton").show();
     var region = document.getElementById("RegionSelector").value;
     getCategories(region);
 });
@@ -115,18 +117,19 @@ function addPlaylistToHTML(playlist){
     playlistsCollection[nPlaylists-1].addEventListener("click", function(){
         spotifyApi.getPlaylistTracks(playlist.id)
         .then(function(data){
-            postTracksAndGetURL(data.items);
+            postTracksAndGetURL(data.items, playlist.id);
         });
     });
 }
 
-function postTracksAndGetURL(tracks){
+function postTracksAndGetURL(tracks, playlistId){
     var gameTracksIds = getRandomTracks(tracks);
 
     $("#PlaylistsContainer").hide();
 
     var parametros = {
-        tracks: gameTracksIds
+        tracks: gameTracksIds,
+        playlist: playlistId
     };
     $.ajax({
         data: parametros,
@@ -136,7 +139,6 @@ function postTracksAndGetURL(tracks){
             console.log("Cargando...");
         },
         success: function(data){
-            console.log(data);
             window.location.href = ("./game.html?id=") + data;
         },
         error: function(request, status, error){
@@ -184,6 +186,7 @@ function goToSelectCountry(){
 }
 
 function goToSelectRegion() {
+    $("#BackButton").hide();
     $("#CountrySelection").show();
     $("#CategoriesContainer").hide();
     $("#CategoriesContainer").html('');

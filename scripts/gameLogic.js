@@ -125,7 +125,7 @@ function empezarRonda(nRonda, puntos, nSecs){
                 $("#Tiempo").text(s--);
             }, 1000);
         }, nSecs * 1000);
-        document.getElementById("AdivinarBtn").disabled = true;
+        botonAdivinar.disabled = true;
     });
 }
 

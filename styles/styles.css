@@ -8,18 +8,18 @@ header{
     background: white;
     position: fixed;
     width: 100%;
-    height: 60px;
+    height: 120px;
     z-index: 999;
 }
 #MainTitle{
     position: relative;
-    top: 20px; 
+    top: 45px; 
     color:black; 
     text-shadow: 0px 0px 3px #2d2d2d;
 }
 #MainTitle2{
     position: relative;
-    top: 20px; 
+    top: 45px; 
     color:black; 
     text-shadow: 0px 0px 3px #2d2d2d;
 }
@@ -138,14 +138,110 @@ header{
 }
 #CategoriesContainer{
     position: relative;
-    top: 70px;
+    top: 120px;
 
 }
 
 #PlaylistsContainer{
     position: relative;
-    top: 70px;
+    top: 120px;
 }
 
+/**/
 
+#Game{
+    width: 500px;
+    height: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+}
 
+#Game img{
+    width: 100%;
+}
+
+#Ronda{
+    position: relative;    
+    margin: 5px 20px 20px 20px;
+    font-size: 35px;
+    color:#755A6F;
+    font-weight: bold;
+}
+
+#PlaylistName{
+    position: relative;    
+    font-size: 50px;
+    color:#db2d43;
+    font-weight: bold;
+    margin-top: 80px;
+}
+
+#AdivinarBtn{
+    position: relative;
+    font-weight: bold;
+    height: 40px;
+    width: 130px;
+    margin-left: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px black;
+    border: 2px solid #db2d43;
+    color: #db2d43;
+    background: white;
+}
+
+#AdivinarBtn:hover{
+    border: 2px solid #db2d43;  
+    color:white;
+    background: #db2d43;
+}
+#SiguienteBtn{
+    position: relative;
+    font-weight: bold;
+    height: 40px;
+    width: 130px;
+    margin-left: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px black;
+    border: 2px solid #db2d43;
+    color: #db2d43;
+    background: white;
+}
+#SiguienteBtn:hover{
+    border: 2px solid #db2d43;  
+    color:white;
+    background: #db2d43;
+}
+.interaction{
+    margin: 10px;
+}
+
+#Intento{
+    height: 40px;
+    width: 300px;
+
+}
+
+#ScoreContainer{
+    margin: 20px auto;
+    top: 50%;
+}
+
+#Score{
+    font-size: 50px;
+    color:#db2d43;
+    font-weight: bold;
+    margin-top: 100px;
+}
+#ScoreContainer{
+    text-align: center;
+    height: 100px;
+    width: 500px;
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3em;
+    font-weight: bold;
+    text-shadow: 0px 0px 1px black;
+}

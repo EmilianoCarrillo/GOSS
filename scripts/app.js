@@ -2,7 +2,12 @@ var spotifyApi = new SpotifyWebApi();
 var audioPlayer = document.getElementById("AudioPlayer");
 $("#BackButton").hide();
 $("#Game").hide();
-document.getElementById("AdivinarBtn").disabled = true;
+
+$("#MainTitle").hide();
+$("#MainTitle2").hide();
+$("#ScoreContainer").hide();
+document.getElementById("AdivinarBtn").disabled = false;
+document.getElementById("Intento").focus();
 
 
 // POST to my node server to retrieve my Auth Token
@@ -29,6 +34,8 @@ document.querySelector("#CountrySelection button").addEventListener("click", fun
 });
 
 function getCategories(country) {  
+    $("#Goss").hide();
+    $("#MainTitle").show();
     $("#CategoriesContainer").show();
     $("#CountrySelection").hide();
     document.querySelector("#BackButton").removeEventListener("click", goToSelectCountry);
@@ -84,6 +91,8 @@ function addCategoryToHTML(category){
 }
 
 function showPlaylists(id){
+    $("#MainTitle").hide();
+    $("#MainTitle2").show();
     $("#CategoriesContainer").hide();
     $("#PlaylistsContainer").show();
     document.querySelector("#BackButton").removeEventListener("click", goToSelectRegion);
@@ -120,7 +129,7 @@ function addPlaylistToHTML(playlist){
     playlistsCollection[nPlaylists-1].addEventListener("click", function(){
         spotifyApi.getPlaylistTracks(playlist.id)
         .then(function(data){
-            postTracksAndGetURL(data.items, playlist.id);
+            postTracksAndGetURL(data.items, playlist.name);
         });
     });
 }
@@ -129,23 +138,31 @@ var actual = 0;
 var gameTracksIds;
 var interval;
 var timeout;
-var numOfSongs = 3;
+var numOfSongs = 8;
+var cancionActual;
+var points = 0;
 
-function postTracksAndGetURL(tracks, playlistId){
-
+function postTracksAndGetURL(tracks, playlistName){
+    document.getElementById("Intento").focus();
+    $("header").hide();
+    $("#MainTitle").hide();
+    $("#MainTitle2").hide();
     $("#PlaylistsContainer").hide();
     $("#Game").show();
     $("#BackButton").hide();
     
     gameTracksIds = getRandomTracks(tracks);
+    document.getElementById("PlaylistName").innerHTML = "\""+ playlistName + "\"";
+    document.getElementById("Ronda").innerHTML = ("CANCIÓN " + parseInt(actual+1));
 
-    playRound(gameTracksIds[actual++], 3);
+    playRound(gameTracksIds[actual++], 5);
 
 }
 
 function playRound(trackId, seconds){
     spotifyApi.getTrack(trackId)
     .then(function(data){
+        cancionActual = data.name;
         playforNSeconds(data.preview_url, seconds);
 
         var s = 10;
@@ -154,9 +171,11 @@ function playRound(trackId, seconds){
             interval = setInterval(function () {
                 if(s == 0) {
                     clearInterval(interval);
-                    document.getElementById("TituloCancion").innerHTML = data.name;
+                    document.getElementById("TituloCancion").innerHTML = "Respuesta: " + data.name;
+                    $("#Intento").hide();
+                    $("#AdivinarBtn").hide();
                 }
-                $("#Tiempo").text(s--);
+                $("#Tiempo").text("Tiempo restante: " + (s--) + " seg");
             }, 1000);
         }, seconds * 1000);
         
@@ -164,7 +183,8 @@ function playRound(trackId, seconds){
 }
 
 function next(){
-    console.log(actual);
+    document.getElementById("Intento").focus();
+    document.getElementById("Ronda").innerHTML = ("Canción "  + parseInt(actual+1));
     audioPlayer.pause();
     audioPlayer.currentTime = 0;
     document.getElementById("TituloCancion").innerHTML = "";
@@ -174,9 +194,11 @@ function next(){
 
 
     if(actual == numOfSongs){
-        alert("FINAL SCORE");
+        $("#Game").hide();
+        $("#ScoreContainer").show();
+        $("#ScoreContainer").text("PUNTAJE FINAL: " + points);
     } else{
-        playRound(gameTracksIds[actual++], 3);
+        playRound(gameTracksIds[actual++], 5);
     }
 }
 
@@ -202,6 +224,8 @@ function getRandomTracks(tracks){
 
 
 function playforNSeconds(source, seconds) {
+    $("#Intento").show();
+    $("#AdivinarBtn").show();
     $("#SiguienteBtn").hide();
     audioPlayer.src = source;
     audioPlayer.play();
@@ -213,6 +237,9 @@ function playforNSeconds(source, seconds) {
 }
 
 function goToSelectCountry(){
+    $("#Goss").hide();
+    $("#MainTitle").show();
+    $("#MainTitle2").hide();
     $("#CategoriesContainer").show();
     $("#PlaylistsContainer").hide();
     $("#PlaylistsContainer").html('');
@@ -220,11 +247,92 @@ function goToSelectCountry(){
 }
 
 function goToSelectRegion() {
+    $("#Goss").show();
+    $("#MainTitle").hide();
+    $("#MainTitle2").hide();
     $("#BackButton").hide();
     $("#CountrySelection").show();
     $("#CategoriesContainer").hide();
     $("#CategoriesContainer").html('');
 }
 
+var adivinarBtn = document.getElementById("AdivinarBtn").addEventListener("click", adivinar);
+
+function adivinar(){
+    var inputText = document.getElementById("Intento").value;
+    console.log("cancion: " + cancionActual);
+    function trun(cancion_Actual){
+        var i;
+        var newCad = "";
+        for(i = 0; i < cancion_Actual.length; i++){
+            if(cancion_Actual[i] == "(" || cancion_Actual[i] == "-"){
+                break;
+            }
+            newCad += cancion_Actual[i];
+        }
+        return newCad;
+    }
+    
+    cancionActual = trun(cancionActual);
+
+    if(similarity(inputText, cancionActual)*100 > 60.0){
+        points++;
+        
+        document.getElementById("Puntos").innerHTML = "Puntos: " + points;
+        next();
+    }
+
+    document.getElementById("Intento").value = "";
+};
+
+
+function similarity(s1, s2) {
+    var longer = s1;
+    var shorter = s2;
+    if (s1.length < s2.length) {
+      longer = s2;
+      shorter = s1;
+    }
+    var longerLength = longer.length;
+    if (longerLength == 0) {
+      return 1.0;
+    }
+    return (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength);
+  }
+
+
+  function editDistance(s1, s2) {
+    s1 = s1.toLowerCase();
+    s2 = s2.toLowerCase();
+  
+    var costs = new Array();
+    for (var i = 0; i <= s1.length; i++) {
+      var lastValue = i;
+      for (var j = 0; j <= s2.length; j++) {
+        if (i == 0)
+          costs[j] = j;
+        else {
+          if (j > 0) {
+            var newValue = costs[j - 1];
+            if (s1.charAt(i - 1) != s2.charAt(j - 1))
+              newValue = Math.min(Math.min(newValue, lastValue),
+                costs[j]) + 1;
+            costs[j - 1] = lastValue;
+            lastValue = newValue;
+          }
+        }
+      }
+      if (i > 0)
+        costs[s2.length] = lastValue;
+    }
+    return costs[s2.length];
+  }
+
+
+document.querySelector("#Intento").addEventListener('keyup',function(e){
+    if (e.keyCode === 13) {
+        adivinar();
+    }
+});
 
 getTokenFromNode();

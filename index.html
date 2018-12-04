@@ -13,24 +13,17 @@
 </head>
 <body>
         
-               <header>
+               <header id="Header">
                     <h1 class="title is-one" id="MainTitle">Select your favorite music genre</h1>
                     <h1 class="title is-one" id="MainTitle2">Select your playlist</h1>
                     <button class="button" id="BackButton"><i class="fas fa-angle-left"></i> &nbsp; &nbsp;Go Back</button>
                </header>
 
     <div class="container">
-<<<<<<< HEAD
-            <h1 class="title is-one" id="MainTitle">Guessing One Second Song</h1>
-
-            <button class="button" id="BackButton"><i class="fas fa-angle-left"></i> &nbsp; &nbsp;Go Back</button>
-
-=======
         <h1 id="Goss">GOSS</h1>   
            
   
         
->>>>>>> impoved_design
             <section id="CountrySelection">
                 <h3 id="SelectYourRegion">Select your region </h3>
 
@@ -55,21 +48,28 @@
 
             
             <div id="Game">
+                <h1 id="PlaylistName"></h1>
                 <h1 id="Ronda"></h1>
-                <h3 id="Puntos"></h3>
-                <h2 id="TituloCancion"></h2>
                 <h3 id="Tiempo"></h3>
+                <h3 id="Puntos"></h3>
                 <audio id="AudioPlayer" preload="auto"></audio>
-                <img src="http://rs160.pbsrc.com/albums/t197/HallaBoo/2u4q4ia.gif~c200" alt="">
-                <input type="text" id="Intento">
-                <button id="AdivinarBtn">Adivinar</button>
-                <button id="SiguienteBtn" onclick="next()">Siguiente</button>
+                <img src="https://media.giphy.com/media/TtbKUTJDnbijC/giphy.gif" alt=""><br>
+                <h2 id="TituloCancion"></h2>
+                <input type="text" id="Intento"class="interaction"><br>
+                <button id="AdivinarBtn" class="interaction">Adivinar</button><br>
+                <button id="SiguienteBtn" class="interaction"onclick="next()">Siguiente</button><br>
+            </div>
+
+            <div id="ScoreContainer">
+                    <img id="Imagen" src="https://media.giphy.com/media/TtbKUTJDnbijC/giphy.gif" alt="">
+                <!-- <img src="https://media0.giphy.com/media/iFL8qJ5DVusJG/200.webp?cid=3640f6095c0578495549704b32db9cd4"> -->
+                <h1 id="Score"></h1>
             </div>
 
     </div>
 
     <script src="scripts/spotify-web-api-js/src/spotify-web-api.js"></script>
     <script src="scripts/app.js"></script>
-    <script src="scripts/app2.js"></script>
+    <!-- <script src="scripts/app2.js"></script> -->
 </body>
 </html>

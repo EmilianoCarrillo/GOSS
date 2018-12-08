@@ -2,6 +2,7 @@ var spotifyApi = new SpotifyWebApi();
 var audioPlayer = document.getElementById("AudioPlayer");
 $("#BackButton").hide();
 $("#Game").hide();
+$("#Header").hide();/* Quitar header*/
 
 $("#MainTitle").hide();
 $("#MainTitle2").hide();
@@ -29,11 +30,13 @@ function setToken(tokenFromNode){
 // Choose region
 document.querySelector("#CountrySelection button").addEventListener("click", function(){
     $("#BackButton").show();
+    $("#Header").show();/* Mostrar header*/
     var region = document.getElementById("RegionSelector").value;
     getCategories(region);
 });
 
 function getCategories(country) {  
+    $("#Header").show();/* Mostrar header*/
     $("#Goss").hide();
     $("#MainTitle").show();
     $("#CategoriesContainer").show();
@@ -92,6 +95,7 @@ function addCategoryToHTML(category){
 
 function showPlaylists(id){
     $("#MainTitle").hide();
+    $("#Header").show();/* Mostrar header*/
     $("#MainTitle2").show();
     $("#CategoriesContainer").hide();
     $("#PlaylistsContainer").show();

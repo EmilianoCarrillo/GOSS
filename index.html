@@ -12,41 +12,45 @@
     <title>GOSS</title>
 </head>
 <body>
+
+    <div id="MainContainer">
         
                <header id="Header">
                     <h1 class="title is-one" id="MainTitle">Select your favorite music genre</h1>
                     <h1 class="title is-one" id="MainTitle2">Select your playlist</h1>
                     <button class="button" id="BackButton"><i class="fas fa-angle-left"></i> &nbsp; &nbsp;Go Back</button>
                </header>
+               
 
     <div class="container">
-        <h1 id="Goss">GOSS</h1>   
-           
+          
+         
   
         
             <section id="CountrySelection">
+                    <h1 id="Goss">GOSS</h1>
                 <h3 id="SelectYourRegion">Select your region </h3>
-
-                <select id="RegionSelector">
-                    <option value="GL">Global</option>
-                    <option value="MX">Mexico</option>
-                </select>
-
+                <div id="Bot">
+                    <select id="RegionSelector">
+                        <option value="GL">Global</option>
+                        <option value="MX">Mexico</option>
+                    </select>
                 <button class="button" id="ChoseRegion">Select</button>
-
+            </div>
             </section>
+           
 
             <section id="CategoriesContainer" class="columns is-multiline is-mobile">
                 <!-- <div class="category">
                     <img src="">
                     <h2 id="Name"></h2>
                  </div>  -->
-            </section>
-
+           </section>
+ 
             <section id="PlaylistsContainer" class="columns is-multiline is-mobile">
             </section>
 
-            
+          
             <div id="Game">
                 <h1 id="PlaylistName"></h1>
                 <h1 id="Ronda"></h1>
@@ -56,20 +60,24 @@
                 <img src="https://media.giphy.com/media/TtbKUTJDnbijC/giphy.gif" alt=""><br>
                 <h2 id="TituloCancion"></h2>
                 <input type="text" id="Intento"class="interaction"><br>
-                <button id="AdivinarBtn" class="interaction">Adivinar</button><br>
-                <button id="SiguienteBtn" class="interaction"onclick="next()">Siguiente</button><br>
+                <button id="AdivinarBtn" class="interaction">Guess</button><br>
+                <button id="SiguienteBtn" class="interaction"onclick="next()">Next</button><br>
             </div>
-
+           
+ 
             <div id="ScoreContainer">
                     <img id="Imagen" src="https://media.giphy.com/media/TtbKUTJDnbijC/giphy.gif" alt="">
                 <!-- <img src="https://media0.giphy.com/media/iFL8qJ5DVusJG/200.webp?cid=3640f6095c0578495549704b32db9cd4"> -->
                 <h1 id="Score"></h1>
             </div>
+            
 
     </div>
+</div>
 
     <script src="scripts/spotify-web-api-js/src/spotify-web-api.js"></script>
     <script src="scripts/app.js"></script>
-    <!-- <script src="scripts/app2.js"></script> -->
+     <!--<script src="scripts/app2.js"></script> -->
+    
 </body>
 </html>
